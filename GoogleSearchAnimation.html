@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+   <title> Google Voice Search Animation</title>
+   <meta charset="utf-8" >
+   <meta name="viewport" content="width=device-width">
+   <meta name="description" content="this animation is shown on Google's Voice search page ">
+   <meta name="author" content="Nuruhussein Mohammed">
+   <style type="text/css">
+    
+    
+   	.box{
+   		position: absolute;
+   		background-color: black;
+   		height: 40px;
+        width: 40px;
+        border-radius: 25px;
+   	}
+   	#box1{  		
+   		left: 30%;
+   		top: 200px; 
+   		background-color: rgb(0, 102, 255);
+   	}
+   	#box2{  		
+   		left: 35%;		
+   		top: 200px; 
+   		background-color: red;
+   	} 
+    #box3{  		
+   		left: 40%;		
+   		top: 200px;  
+   		background-color: yellow;
+   	}
+   	#box4{  		
+   		left: 45%;		
+   		top: 200px;  
+   		background-color: green;
+   	}
+   </style>
+ </head>
+<body>	
+
+ <!-- THE CIRCULAR BOXES -->
+ 
+	  <div id="box1" class="box"> </div>
+  	<div id="box2" class="box"> </div>
+    <div id="box3" class="box"> </div>
+    <div id="box4" class="box"> </div>
+
+
+<script type="text/javascript">
+	var box1 = document.getElementById("box1");
+	var box2 = document.getElementById("box2");
+    var box3 = document.getElementById("box3");
+    var box4 = document.getElementById("box4");
+
+    function Box() {            // FUNCTIONAL CONSTRUCTOR
+    	this.size = 40;         
+    	this.state = "dec";      // THE STATE OF A BOX DECREASING. MEANS ITS SIZE IS DECREASING  
+    	this.topp = 0;           
+    }
+    var objBox1 = new Box();
+    var objBox2 = new Box();
+    var objBox3 = new Box();
+    var objBox4 = new Box();
+
+    objBox1.size = 32.5;
+    objBox1.topp = 60;
+
+    objBox2.size = 35;
+    objBox2.topp = 40;
+
+    objBox3.size = 37.5;
+    objBox3.topp = 20;
+
+    window.onload = function() {
+       setInterval (function() { resize(box1, objBox1) } ,12.5 );   
+       setInterval (function() { resize(box2, objBox2) } ,12.5 );   		
+       setInterval (function() { resize(box3, objBox3) } ,12.5 );  
+       setInterval (function() { resize(box4, objBox4) } ,12.5 ); 		
+    }
+
+	function resize(box, objBox) {
+		if (objBox.state == "dec") {
+		    box.style.height = objBox.size + "px";
+		    box.style.width = objBox.size + "px";
+		    box.style.top = 200 + objBox.topp + "px";
+		    objBox.size -= 0.25;
+            objBox.topp += 2;
+            
+		    if (objBox.topp > 80) {
+		    	objBox.state = "inc";
+		    }
+		}
+		else if (objBox.state == "inc") {
+			box.style.height = objBox.size + "px";
+		    box.style.width = objBox.size + "px";
+		    box.style.top = 200 + objBox.topp + "px";
+		    objBox.size += 0.25;
+		    objBox.topp -= 2;
+
+		    if (objBox.topp <= 0) {
+		    	objBox.state = "dec";
+		    }
+		}
+
+	}
+</script>
+</body>
+</html>
